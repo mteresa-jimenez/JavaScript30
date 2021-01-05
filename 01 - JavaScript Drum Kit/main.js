@@ -9,4 +9,11 @@ function handleAudio(ev) {
   key.classList.add("playing");
 }
 
+function removeTransition(ev) {
+  if (ev.propertyName !== "transform") return; // skip if it's not a transform
+  this.classList.remove("playing");
+}
+
+const keys = document.querySelectorAll(".key");
+keys.forEach((key) => key.addEventListener("transitionend", removeTransition));
 window.addEventListener("keydown", handleAudio);
